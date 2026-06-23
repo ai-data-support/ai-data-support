@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NZZ7FWB4');</script>
+<!-- End Google Tag Manager -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>マーケティングデータ基盤パッケージ</title>
+<meta name="description" content="GA4の計測設計からBIダッシュボード構築、BigQuery深掘り分析まで。眠っているデータを、経営判断に使える数字に変えます。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #FAFAF8;
+  --card: #FFFFFF;
+  --primary: #0F6E56;
+  --primary-light: #E1F5EE;
+  --primary-mid: #9FE1CB;
+  --cta: #D85A30;
+  --cta-hover: #C04E28;
+  --text: #1A1A18;
+  --text-secondary: #6B6B66;
+  --text-tertiary: #9C9A92;
+  --border: #E8E6E0;
+  --blue-light: #E6F1FB;
+  --blue: #185FA5;
+  --font-jp: 'Noto Sans JP', sans-serif;
+  --font-num: 'Inter', sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-jp);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.8;
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --- NAV --- */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(250,250,248,0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s;
+}
+.nav.scrolled { border-bottom-color: var(--border); }
+.nav-inner {
+  max-width: 1080px; margin: 0 auto;
+  padding: 14px 24px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo {
+  font-weight: 700; font-size: 14px; color: var(--primary);
+  letter-spacing: 0.02em; text-decoration: none;
+}
+.nav-cta {
+  font-size: 13px; font-weight: 500;
+  color: var(--card); background: var(--primary);
+  padding: 8px 20px; border-radius: 8px;
+  text-decoration: none; transition: opacity 0.2s;
+}
+.nav-cta:hover { opacity: 0.88; }
+
+/* --- SECTIONS --- */
+.section { padding: 80px 24px; }
+.section-inner { max-width: 860px; margin: 0 auto; }
+.section-label {
+  font-size: 12px; font-weight: 500; color: var(--primary);
+  letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 12px;
+}
+.section-heading {
+  font-size: clamp(22px, 4vw, 30px); font-weight: 700;
+  line-height: 1.5; letter-spacing: 0.02em; margin-bottom: 16px;
+}
+.section-sub {
+  font-size: 15px; color: var(--text-secondary); line-height: 1.8;
+  max-width: 600px;
+}
+
+/* --- HERO --- */
+.hero { padding: 140px 24px 80px; text-align: center; }
+.hero-inner { max-width: 760px; margin: 0 auto; }
+.hero-heading {
+  font-size: clamp(26px, 5.5vw, 40px); font-weight: 700;
+  line-height: 1.45; letter-spacing: 0.03em; margin-bottom: 20px;
+}
+.hero-heading em {
+  font-style: normal;
+  background: linear-gradient(transparent 60%, var(--primary-light) 60%);
+}
+.hero-sub {
+  font-size: 16px; color: var(--text-secondary); line-height: 1.9;
+  margin-bottom: 36px; max-width: 560px; margin-left: auto; margin-right: auto;
+}
+
+/* Pipeline */
+.pipeline {
+  display: flex; align-items: center; justify-content: center;
+  gap: 8px; margin-bottom: 44px; flex-wrap: wrap;
+}
+.pipe-node {
+  padding: 10px 20px; border-radius: 10px;
+  font-size: 14px; font-weight: 600; letter-spacing: 0.02em;
+}
+.pipe-1 { background: var(--primary-light); color: #085041; }
+.pipe-2 { background: var(--blue-light); color: #0C447C; }
+.pipe-3 { background: #FAECE7; color: #712B13; }
+.pipe-arrow { color: var(--text-tertiary); font-size: 18px; }
+.pipe-labels {
+  display: flex; justify-content: center; gap: 40px;
+  margin-top: 8px; margin-bottom: 36px;
+}
+.pipe-label-item { font-size: 12px; color: var(--text-tertiary); text-align: center; }
+.pipe-label-item span { display: block; font-size: 11px; margin-top: 2px; }
+
+/* CTA buttons */
+.cta-group {
+  display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 14px 32px; border-radius: 10px;
+  background: var(--cta); color: #fff;
+  font-size: 15px; font-weight: 600; text-decoration: none;
+  transition: background 0.2s; border: none; cursor: pointer;
+}
+.btn-primary:hover { background: var(--cta-hover); }
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 14px 32px; border-radius: 10px;
+  background: transparent; color: var(--text);
+  font-size: 15px; font-weight: 500; text-decoration: none;
+  border: 1px solid var(--border); transition: border-color 0.2s;
+}
+.btn-secondary:hover { border-color: var(--text-tertiary); }
+.hero-badges {
+  display: flex; gap: 16px; justify-content: center;
+  font-size: 12px; color: var(--text-tertiary);
+}
+.hero-badges span::before {
+  content: '✓'; margin-right: 4px; color: var(--primary);
+}
+
+/* --- PAIN --- */
+.pain-bg { background: var(--card); }
+.pain-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px; margin-top: 32px;
+}
+.pain-card {
+  padding: 20px 22px; border-radius: 12px;
+  border: 1px solid var(--border); background: var(--bg);
+}
+.pain-card p {
+  font-size: 14px; color: var(--text-secondary); line-height: 1.7;
+}
+.pain-card p strong { color: var(--text); font-weight: 500; }
+
+/* --- PLANS --- */
+.plans-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px; margin-top: 36px;
+}
+.plan-card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 14px; padding: 32px 28px; position: relative;
+}
+.plan-num {
+  font-family: var(--font-num); font-size: 12px; font-weight: 600;
+  color: var(--primary); margin-bottom: 8px; letter-spacing: 0.05em;
+}
+.plan-verb {
+  font-size: 13px; font-weight: 500; color: var(--primary);
+  margin-bottom: 4px;
+}
+.plan-name {
+  font-size: 20px; font-weight: 700; margin-bottom: 12px;
+  letter-spacing: 0.02em;
+}
+.plan-desc {
+  font-size: 14px; color: var(--text-secondary); line-height: 1.8;
+  margin-bottom: 20px;
+}
+.plan-items { list-style: none; }
+.plan-items li {
+  font-size: 13px; color: var(--text-secondary);
+  padding: 6px 0; border-bottom: 1px solid #f0eeea;
+  display: flex; align-items: baseline; gap: 8px;
+}
+.plan-items li:last-child { border-bottom: none; }
+.plan-items li::before {
+  content: ''; width: 6px; height: 6px;
+  background: var(--primary-mid); border-radius: 50%; flex-shrink: 0;
+  margin-top: 6px;
+}
+
+/* --- STEPS --- */
+.steps-bg { background: var(--card); }
+.steps-list {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 24px; margin-top: 36px;
+}
+.step-item { text-align: center; }
+.step-num {
+  font-family: var(--font-num); font-size: 32px; font-weight: 700;
+  color: var(--primary-mid); margin-bottom: 8px; line-height: 1;
+}
+.step-title {
+  font-size: 15px; font-weight: 600; margin-bottom: 6px;
+}
+.step-desc {
+  font-size: 13px; color: var(--text-secondary); line-height: 1.7;
+}
+.step-time {
+  display: inline-block; margin-top: 8px;
+  font-size: 11px; color: var(--primary); font-weight: 500;
+  background: var(--primary-light); padding: 2px 10px; border-radius: 6px;
+}
+
+/* --- WHY --- */
+.why-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px; margin-top: 36px;
+}
+.why-card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 14px; padding: 28px 24px;
+}
+.why-icon {
+  width: 40px; height: 40px; border-radius: 10px;
+  background: var(--primary-light); display: flex;
+  align-items: center; justify-content: center;
+  margin-bottom: 14px; font-size: 18px; color: var(--primary);
+}
+.why-title { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+.why-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.8; }
+
+/* --- PRICING --- */
+.pricing-bg { background: var(--card); }
+.pricing-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px; margin-top: 36px;
+}
+.price-card {
+  border: 1px solid var(--border); border-radius: 14px;
+  padding: 32px 28px; background: var(--bg); position: relative;
+}
+.price-card.featured {
+  border-color: var(--primary); border-width: 2px;
+  background: var(--card);
+}
+.price-badge {
+  position: absolute; top: -13px; left: 24px;
+  background: var(--primary); color: #fff;
+  font-size: 11px; font-weight: 600; padding: 3px 14px;
+  border-radius: 8px;
+}
+.price-plan-name { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+.price-includes {
+  font-size: 12px; color: var(--text-tertiary); margin-bottom: 16px;
+}
+.price-amount {
+  font-family: var(--font-num); font-size: 36px; font-weight: 700;
+  color: var(--text); letter-spacing: -0.02em; line-height: 1.2;
+}
+.price-unit { font-size: 14px; font-weight: 400; color: var(--text-secondary); }
+.price-initial {
+  font-size: 13px; color: var(--text-secondary); margin-top: 4px; margin-bottom: 20px;
+}
+.price-features { list-style: none; margin-bottom: 24px; }
+.price-features li {
+  font-size: 13px; color: var(--text-secondary); padding: 5px 0;
+  display: flex; align-items: baseline; gap: 8px;
+}
+.price-features li::before {
+  content: '✓'; color: var(--primary); font-size: 12px; font-weight: 700; flex-shrink: 0;
+}
+.price-cta {
+  display: block; text-align: center;
+  padding: 12px; border-radius: 10px;
+  font-size: 14px; font-weight: 600; text-decoration: none;
+  transition: opacity 0.2s;
+}
+.price-cta-primary { background: var(--cta); color: #fff; }
+.price-cta-primary:hover { opacity: 0.88; }
+.price-cta-secondary {
+  background: transparent; color: var(--text);
+  border: 1px solid var(--border);
+}
+.price-cta-secondary:hover { border-color: var(--text-tertiary); }
+.pricing-note {
+  font-size: 12px; color: var(--text-tertiary); margin-top: 20px;
+  text-align: center; line-height: 1.7;
+}
+
+/* --- FAQ --- */
+.faq-list { max-width: 680px; margin: 36px auto 0; }
+.faq-item {
+  border-bottom: 1px solid var(--border);
+}
+.faq-q {
+  width: 100%; background: none; border: none; cursor: pointer;
+  padding: 20px 0; text-align: left; font-size: 15px; font-weight: 500;
+  color: var(--text); font-family: var(--font-jp);
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 12px;
+}
+.faq-q:focus-visible { outline: 2px solid var(--primary); outline-offset: 4px; border-radius: 4px; }
+.faq-q::after {
+  content: '+'; font-size: 20px; color: var(--text-tertiary);
+  transition: transform 0.2s; flex-shrink: 0;
+  font-family: var(--font-num); font-weight: 400;
+}
+.faq-item.open .faq-q::after { content: '−'; }
+.faq-a {
+  max-height: 0; overflow: hidden; transition: max-height 0.3s ease;
+}
+.faq-a-inner {
+  padding: 0 0 20px;
+  font-size: 14px; color: var(--text-secondary); line-height: 1.8;
+}
+
+/* --- BOTTOM CTA --- */
+.bottom-cta {
+  background: var(--primary); padding: 64px 24px; text-align: center;
+}
+.bottom-cta .section-inner { max-width: 600px; }
+.bottom-cta-heading {
+  font-size: clamp(20px, 4vw, 28px); font-weight: 700;
+  color: #fff; margin-bottom: 12px; letter-spacing: 0.02em; line-height: 1.5;
+}
+.bottom-cta-sub {
+  font-size: 14px; color: rgba(255,255,255,0.75);
+  margin-bottom: 28px; line-height: 1.8;
+}
+.btn-white {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 14px 36px; border-radius: 10px;
+  background: #fff; color: var(--primary);
+  font-size: 15px; font-weight: 600; text-decoration: none;
+  transition: opacity 0.2s; border: none; cursor: pointer;
+}
+.btn-white:hover { opacity: 0.92; }
+.bottom-badges {
+  display: flex; gap: 16px; justify-content: center; margin-top: 16px;
+  font-size: 12px; color: rgba(255,255,255,0.6);
+}
+
+/* --- ABOUT --- */
+.about-card {
+  max-width: 600px; margin: 0 auto;
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 14px; padding: 32px 28px;
+  display: flex; gap: 20px; align-items: flex-start;
+}
+.about-avatar {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: var(--primary-light); flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; color: var(--primary); font-weight: 700;
+}
+.about-name { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+.about-role { font-size: 12px; color: var(--text-tertiary); margin-bottom: 10px; }
+.about-bio { font-size: 13px; color: var(--text-secondary); line-height: 1.8; }
+
+/* --- FOOTER --- */
+.footer {
+  padding: 32px 24px; text-align: center;
+  border-top: 1px solid var(--border);
+}
+.footer-links {
+  display: flex; gap: 20px; justify-content: center;
+  margin-bottom: 12px; flex-wrap: wrap;
+}
+.footer-links a {
+  font-size: 12px; color: var(--text-tertiary); text-decoration: none;
+}
+.footer-links a:hover { color: var(--text-secondary); }
+.footer-copy {
+  font-size: 11px; color: var(--text-tertiary);
+  font-family: var(--font-num);
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 640px) {
+  .section { padding: 56px 20px; }
+  .hero { padding: 110px 20px 56px; }
+  .plans-grid, .pricing-grid { grid-template-columns: 1fr; }
+  .steps-list { grid-template-columns: 1fr 1fr; }
+  .about-card { flex-direction: column; align-items: center; text-align: center; }
+  .pipe-labels { gap: 16px; }
+  .pipeline { gap: 6px; }
+  .pipe-node { padding: 8px 14px; font-size: 13px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+</style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NZZ7FWB4"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">マーケティングデータ基盤</a>
+    <a href="form.html" class="nav-cta">無料ヒアリング</a>
+  </div>
+</nav>
+
+<!-- 01 HERO -->
+<section class="hero" id="top">
+  <div class="hero-inner">
+    <h1 class="hero-heading">眠っているデータを、<br><em>見える数字</em>に変える。</h1>
+    <p class="hero-sub">GA4の計測設計からBigQueryでの深掘り分析、BIダッシュボード構築まで。御社のデータを、経営判断に使える形に整えます。</p>
+    <div class="pipeline">
+      <span class="pipe-node pipe-1">集める</span>
+      <span class="pipe-arrow">→</span>
+      <span class="pipe-node pipe-2">深掘る</span>
+      <span class="pipe-arrow">→</span>
+      <span class="pipe-node pipe-3">見せる</span>
+    </div>
+    <div class="pipe-labels">
+      <div class="pipe-label-item">GA4 計測設計<span>正しく測る</span></div>
+      <div class="pipe-label-item">BigQuery 分析<span>深く知る</span></div>
+      <div class="pipe-label-item">ダッシュボード<span>毎日見る</span></div>
+    </div>
+    <div class="cta-group">
+      <a href="form.html" class="btn-primary">無料ヒアリングを申し込む</a>
+      <a href="#plans" class="btn-secondary">サービスを詳しく見る</a>
+    </div>
+    <div class="hero-badges">
+      <span>費用0円</span>
+      <span>30分</span>
+      <span>契約義務なし</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 PAIN POINTS -->
+<section class="section pain-bg" id="pain">
+  <div class="section-inner">
+    <div class="section-label">Challenges</div>
+    <h2 class="section-heading">こんな課題はありませんか？</h2>
+    <div class="pain-grid">
+      <div class="pain-card">
+        <p><strong>GA4を入れたけど</strong>、何を見ればいいかわからない。レポートの数字が読めないまま放置している。</p>
+      </div>
+      <div class="pain-card">
+        <p><strong>広告費をかけている</strong>のに、どこでユーザーが離脱しているか把握できていない。</p>
+      </div>
+      <div class="pain-card">
+        <p><strong>レポート作成に毎回半日</strong>かかる。手作業でスプレッドシートにまとめている。</p>
+      </div>
+      <div class="pain-card">
+        <p><strong>ダッシュボードを作った</strong>が、1ヶ月で誰も見なくなってしまった。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 PLANS -->
+<section class="section" id="plans">
+  <div class="section-inner">
+    <div class="section-label">Service</div>
+    <h2 class="section-heading">2つのプランで、<br>データを経営判断に変える</h2>
+    <p class="section-sub">まずプランAでデータ基盤を整え、必要に応じてプランBで深掘り分析を加える。段階的に導入できます。</p>
+    <div class="plans-grid">
+      <div class="plan-card">
+        <div class="plan-num">PLAN A</div>
+        <div class="plan-verb">整える</div>
+        <h3 class="plan-name">GA4 計測設計 +<br>BI ダッシュボード構築</h3>
+        <p class="plan-desc">「正しく測れて、毎日見える」状態を作ります。GA4を入れたまま放置している企業や、数字の見方がわからないチームに最適な入口プランです。</p>
+        <ul class="plan-items">
+          <li>GA4の設定監査・修正</li>
+          <li>GTMでのイベント設計・CV計測</li>
+          <li>事業KPIの設計</li>
+          <li>Looker Studioダッシュボード構築</li>
+          <li>月次レポート・改善提案</li>
+        </ul>
+      </div>
+      <div class="plan-card">
+        <div class="plan-num">PLAN B</div>
+        <div class="plan-verb">深掘る</div>
+        <h3 class="plan-name">BigQuery<br>深掘り分析</h3>
+        <p class="plan-desc">GA4のUIでは見えない深い洞察を、SQLで引き出します。「広告の本当のROI」「リピーターの行動パターン」など、データに基づく意思決定を支援します。</p>
+        <ul class="plan-items">
+          <li>BigQueryへのデータエクスポート設定</li>
+          <li>ファネル分析（離脱ポイント特定）</li>
+          <li>コホート分析（継続率の可視化）</li>
+          <li>LTV算出・広告ROI分析</li>
+          <li>CRM・売上データとの結合分析</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 HOW IT WORKS -->
+<section class="section steps-bg" id="steps">
+  <div class="section-inner">
+    <div class="section-label">Process</div>
+    <h2 class="section-heading">導入の流れ</h2>
+    <div class="steps-list">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-title">無料ヒアリング</div>
+        <p class="step-desc">現状の計測環境、事業KPI、課題をお聞きします。</p>
+        <span class="step-time">30分・費用0円</span>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-title">提案・お見積り</div>
+        <p class="step-desc">最適なプランと具体的なスケジュールをご提案します。</p>
+      </div>
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <div class="step-title">構築</div>
+        <p class="step-desc">計測設計、ダッシュボード構築、分析環境を整備します。</p>
+        <span class="step-time">1〜2ヶ月</span>
+      </div>
+      <div class="step-item">
+        <div class="step-num">4</div>
+        <div class="step-title">運用開始</div>
+        <p class="step-desc">月額保守で継続的に改善・サポートします。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 WHY -->
+<section class="section" id="why">
+  <div class="section-inner">
+    <div class="section-label">Why us</div>
+    <h2 class="section-heading">選ばれる3つの理由</h2>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">SQL</div>
+        <h3 class="why-title">マーケターにはできない<br>深い分析</h3>
+        <p class="why-desc">データサイエンティスト出身。GA4のUIだけでは見えない洞察を、BigQueryのSQLで直接引き出します。CRMや売上データとの結合分析も対応。</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">→</div>
+        <h3 class="why-title">計測設計から可視化まで<br>一気通貫</h3>
+        <p class="why-desc">GA4の設計、BigQuery分析、ダッシュボード構築をひとりで完結。複数ベンダーへの発注・調整が不要で、スピードとコストの両方で有利です。</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">◎</div>
+        <h3 class="why-title">作って終わりではない<br>月額保守</h3>
+        <p class="why-desc">ダッシュボードを納品して終わりではなく、月次レポート・改善提案・計測の保守まで継続サポート。データが実際に使われる状態を維持します。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 PRICING -->
+<section class="section pricing-bg" id="pricing">
+  <div class="section-inner">
+    <div class="section-label">Pricing</div>
+    <h2 class="section-heading">料金プラン</h2>
+    <p class="section-sub">まずはエントリーで「見える化」を実感いただき、段階的にステップアップいただくことをおすすめしています。</p>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="price-plan-name">エントリー</div>
+        <div class="price-includes">プランA（GA4 + ダッシュボード）</div>
+        <div class="price-amount">¥50,000<span class="price-unit"> / 月</span></div>
+        <div class="price-initial">初期構築費：¥300,000</div>
+        <ul class="price-features">
+          <li>GA4 設定・監査・修正</li>
+          <li>GTM イベント設計・CV計測</li>
+          <li>KPI設計</li>
+          <li>Looker Studio ダッシュボード</li>
+          <li>月次レポート配信</li>
+          <li>計測の保守・改善提案</li>
+        </ul>
+        <a href="form.html" class="price-cta price-cta-secondary">無料ヒアリングを申し込む</a>
+      </div>
+      <div class="price-card featured">
+        <span class="price-badge">おすすめ</span>
+        <div class="price-plan-name">スタンダード</div>
+        <div class="price-includes">プランA + B（GA4 + ダッシュボード + BigQuery分析）</div>
+        <div class="price-amount">¥100,000<span class="price-unit"> / 月</span></div>
+        <div class="price-initial">初期構築費：¥500,000</div>
+        <ul class="price-features">
+          <li>エントリーの全機能</li>
+          <li>BigQuery データエクスポート設定</li>
+          <li>ファネル・コホート分析</li>
+          <li>LTV算出・広告ROI分析</li>
+          <li>CRM・売上データとの結合分析</li>
+          <li>月次定点分析 + 改善提案</li>
+        </ul>
+        <a href="form.html" class="price-cta price-cta-primary">無料ヒアリングを申し込む</a>
+      </div>
+    </div>
+    <p class="pricing-note">※ 価格は税別です。初回は実績構築価格でのご提供も可能です。お気軽にご相談ください。</p>
+  </div>
+</section>
+
+<!-- 07 FAQ -->
+<section class="section" id="faq">
+  <div class="section-inner">
+    <div class="section-label">FAQ</div>
+    <h2 class="section-heading">よくある質問</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q">GA4の設定を自社でやりましたが、正しく計測できているか不安です。</button>
+        <div class="faq-a"><div class="faq-a-inner">既存設定の監査も対応しています。エントリープランに「GA4監査」が含まれており、設定の問題点を洗い出し修正します。</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Looker Studio以外のBIツールにも対応できますか？</button>
+        <div class="faq-a"><div class="faq-a-inner">はい。Tableau、Power BI、Streamlitなど、ご利用中のツールに合わせて構築可能です。ご相談ください。</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">自社にエンジニアがいなくても大丈夫ですか？</button>
+        <div class="faq-a"><div class="faq-a-inner">大丈夫です。GTMの設定からBigQueryの構築まで全て対応します。社内にエンジニアがいない企業こそ、このサービスの対象です。</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">最低契約期間はありますか？</button>
+        <div class="faq-a"><div class="faq-a-inner">初期構築後の月額保守に最低契約期間はありません。ただし、データの蓄積と改善サイクルを回すため、3ヶ月以上の継続を推奨しています。</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">どのくらいで成果が出ますか？</button>
+        <div class="faq-a"><div class="faq-a-inner">ダッシュボードは構築後すぐにご利用いただけます。BigQuery分析による改善施策の効果は、施策の内容にもよりますが、通常1〜3ヶ月で数字に現れ始めます。</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">途中でスタンダードにアップグレードできますか？</button>
+        <div class="faq-a"><div class="faq-a-inner">はい、いつでも可能です。まずエントリーでデータ基盤を整え、深掘りが必要になったタイミングでBigQuery分析を追加する方が多いです。</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 08 BOTTOM CTA -->
+<section class="bottom-cta" id="contact">
+  <div class="section-inner">
+    <h2 class="bottom-cta-heading">まずは30分、<br>御社のデータ活用について話しませんか？</h2>
+    <p class="bottom-cta-sub">現状の計測環境や課題をお聞きし、最適なプランをご提案します。<br>費用は一切かかりません。</p>
+    <a href="form.html" class="btn-white">無料ヒアリングを申し込む</a>
+    <div class="bottom-badges">
+      <span>費用0円</span>
+      <span>所要30分</span>
+      <span>契約義務なし</span>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="section-inner">
+    <div class="about-card">
+      <div class="about-avatar">D</div>
+      <div>
+        <div class="about-name">（お名前）</div>
+        <div class="about-role">データサイエンティスト / マーケティングデータ基盤コンサルタント</div>
+        <p class="about-bio">データサイエンティストとして実務経験を積んだ後、独立。GA4の計測設計からBigQueryでの深掘り分析、BIダッシュボード構築まで、データを「経営判断に使える形」に整えるサービスを提供しています。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-links">
+    <a href="#">プライバシーポリシー</a>
+    <a href="#">特定商取引法に基づく表記</a>
+    <a href="mailto:your@email.com">お問い合わせ</a>
+  </div>
+  <div class="footer-copy">&copy; 2026 All Rights Reserved.</div>
+</footer>
+
+<script>
+// Nav scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 10);
+});
+
+// FAQ accordion
+document.querySelectorAll('.faq-q').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.parentElement;
+    const answer = item.querySelector('.faq-a');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(el => {
+      el.classList.remove('open');
+      el.querySelector('.faq-a').style.maxHeight = '0';
+    });
+    if (!isOpen) {
+      item.classList.add('open');
+      answer.style.maxHeight = answer.scrollHeight + 'px';
+    }
+  });
+});
+</script>
+</body>
+</html>

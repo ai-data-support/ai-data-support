@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NZZ7FWB4');</script>
+<!-- End Google Tag Manager -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>無料ヒアリング申し込み | マーケティングデータ基盤パッケージ</title>
+<meta name="description" content="30分の無料ヒアリングにお申し込みください。現状の計測環境や課題をお聞きし、最適なプランをご提案します。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #FAFAF8;
+  --card: #FFFFFF;
+  --primary: #0F6E56;
+  --primary-light: #E1F5EE;
+  --primary-mid: #9FE1CB;
+  --cta: #D85A30;
+  --cta-hover: #C04E28;
+  --text: #1A1A18;
+  --text-secondary: #6B6B66;
+  --text-tertiary: #9C9A92;
+  --border: #E8E6E0;
+  --font-jp: 'Noto Sans JP', sans-serif;
+  --font-num: 'Inter', sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-jp);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.8;
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* NAV */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(250,250,248,0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+  max-width: 1080px; margin: 0 auto;
+  padding: 14px 24px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo {
+  font-weight: 700; font-size: 14px; color: var(--primary);
+  letter-spacing: 0.02em; text-decoration: none;
+}
+.nav-back {
+  font-size: 13px; color: var(--text-secondary);
+  text-decoration: none; display: flex; align-items: center; gap: 4px;
+  transition: color 0.2s;
+}
+.nav-back:hover { color: var(--text); }
+
+/* MAIN */
+.main {
+  padding: 120px 24px 80px;
+  min-height: 100vh;
+}
+.main-inner {
+  max-width: 640px; margin: 0 auto;
+}
+
+/* HEADER */
+.form-header {
+  margin-bottom: 40px;
+}
+.form-label {
+  font-size: 12px; font-weight: 500; color: var(--primary);
+  letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 12px;
+}
+.form-title {
+  font-size: clamp(22px, 4vw, 28px); font-weight: 700;
+  line-height: 1.5; letter-spacing: 0.02em; margin-bottom: 12px;
+}
+.form-desc {
+  font-size: 14px; color: var(--text-secondary); line-height: 1.8;
+}
+
+/* BADGES */
+.form-badges {
+  display: flex; gap: 12px; flex-wrap: wrap; margin-top: 16px;
+}
+.form-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 12px; color: var(--primary);
+  background: var(--primary-light); padding: 4px 12px; border-radius: 20px;
+  font-weight: 500;
+}
+.form-badge::before { content: '✓'; }
+
+/* FORM CARD */
+.form-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 40px 36px;
+}
+
+.field { margin-bottom: 24px; }
+.field-label {
+  display: block;
+  font-size: 13px; font-weight: 500; color: var(--text);
+  margin-bottom: 8px;
+}
+.field-label .required {
+  color: var(--cta); font-size: 11px; margin-left: 4px; font-weight: 400;
+}
+.field-input,
+.field-select,
+.field-textarea {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-family: var(--font-jp);
+  font-size: 14px;
+  color: var(--text);
+  background: var(--bg);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.field-input:focus,
+.field-select:focus,
+.field-textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(15,110,86,0.08);
+}
+.field-select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239C9A92' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+  cursor: pointer;
+}
+.field-textarea {
+  resize: vertical; min-height: 100px; line-height: 1.7;
+}
+.field-hint {
+  font-size: 12px; color: var(--text-tertiary); margin-top: 6px;
+}
+
+.field-row {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+}
+
+/* DIVIDER */
+.form-divider {
+  border: none; border-top: 1px solid var(--border);
+  margin: 28px 0;
+}
+
+/* CHECKBOX */
+.checkbox-group { display: flex; flex-direction: column; gap: 10px; }
+.checkbox-label {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: 13px; color: var(--text-secondary);
+  cursor: pointer; line-height: 1.6;
+}
+.checkbox-label input[type="checkbox"] {
+  width: 16px; height: 16px; flex-shrink: 0;
+  margin-top: 2px; accent-color: var(--primary); cursor: pointer;
+}
+
+/* SUBMIT */
+.btn-submit {
+  width: 100%;
+  padding: 15px 32px;
+  background: var(--cta); color: #fff;
+  border: none; border-radius: 10px;
+  font-family: var(--font-jp);
+  font-size: 15px; font-weight: 600;
+  cursor: pointer; transition: background 0.2s;
+  margin-top: 8px;
+}
+.btn-submit:hover { background: var(--cta-hover); }
+
+.form-note {
+  font-size: 12px; color: var(--text-tertiary);
+  text-align: center; margin-top: 14px; line-height: 1.7;
+}
+
+/* FOOTER */
+.footer {
+  text-align: center; padding: 32px 24px;
+  font-size: 12px; color: var(--text-tertiary);
+  border-top: 1px solid var(--border);
+}
+.footer-links {
+  display: flex; justify-content: center; gap: 20px;
+  margin-bottom: 10px; flex-wrap: wrap;
+}
+.footer-links a {
+  color: var(--text-tertiary); text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--text); }
+
+@media (max-width: 540px) {
+  .form-card { padding: 28px 20px; }
+  .field-row { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NZZ7FWB4"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">マーケティングデータ基盤</a>
+    <a href="index.html" class="nav-back">← サービスページに戻る</a>
+  </div>
+</nav>
+
+<main class="main">
+  <div class="main-inner">
+
+    <div class="form-header">
+      <div class="form-label">Free Hearing</div>
+      <h1 class="form-title">無料ヒアリングの<br>お申し込み</h1>
+      <p class="form-desc">現状の計測環境や事業課題をお聞きし、最適なプランをご提案します。<br>費用は一切かかりません。お気軽にご入力ください。</p>
+      <div class="form-badges">
+        <span class="form-badge">費用0円</span>
+        <span class="form-badge">所要30分</span>
+        <span class="form-badge">契約義務なし</span>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <form action="thanks.html" method="get">
+
+        <!-- 会社情報 -->
+        <div class="field-row">
+          <div class="field">
+            <label class="field-label" for="company">会社名<span class="required">必須</span></label>
+            <input class="field-input" type="text" id="company" name="company" placeholder="株式会社〇〇" required>
+          </div>
+          <div class="field">
+            <label class="field-label" for="industry">業種</label>
+            <select class="field-select" id="industry" name="industry">
+              <option value="">選択してください</option>
+              <option>EC・小売</option>
+              <option>SaaS・IT</option>
+              <option>メディア・コンテンツ</option>
+              <option>不動産</option>
+              <option>医療・ヘルスケア</option>
+              <option>教育</option>
+              <option>製造・BtoB</option>
+              <option>その他</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label class="field-label" for="name">お名前<span class="required">必須</span></label>
+            <input class="field-input" type="text" id="name" name="name" placeholder="山田 太郎" required>
+          </div>
+          <div class="field">
+            <label class="field-label" for="role">役職・部署</label>
+            <input class="field-input" type="text" id="role" name="role" placeholder="マーケティング部 部長">
+          </div>
+        </div>
+
+        <div class="field" id="email-field">
+          <label class="field-label" for="email">メールアドレス<span class="required">必須</span></label>
+          <input class="field-input" type="email" id="email" name="email" placeholder="taro@company.co.jp" required>
+          <p class="field-hint">会社・法人のメールアドレスをご入力ください</p>
+          <p id="email-error" style="display:none; font-size:12px; color:var(--cta); margin-top:6px;">※ フリーメールアドレス（Gmail・Yahoo等）はご利用いただけません。会社のメールアドレスをご入力ください。</p>
+        </div>
+
+        <hr class="form-divider">
+
+        <!-- 現状 -->
+        <div class="field">
+          <label class="field-label" for="tool">現在利用している計測ツール</label>
+          <div class="checkbox-group">
+            <label class="checkbox-label"><input type="checkbox" name="tool" value="ga4">GA4（Googleアナリティクス4）</label>
+            <label class="checkbox-label"><input type="checkbox" name="tool" value="gtm">Googleタグマネージャー（GTM）</label>
+            <label class="checkbox-label"><input type="checkbox" name="tool" value="looker">Looker Studio</label>
+            <label class="checkbox-label"><input type="checkbox" name="tool" value="bq">BigQuery</label>
+            <label class="checkbox-label"><input type="checkbox" name="tool" value="none">まだ何も使っていない</label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="interest">特に関心のあるサービス</label>
+          <select class="field-select" id="interest" name="interest">
+            <option value="">選択してください</option>
+            <option>GA4 計測設計・修正（プランA）</option>
+            <option>Looker Studio ダッシュボード構築（プランA）</option>
+            <option>BigQuery 深掘り分析（プランB）</option>
+            <option>まずはエントリープラン一式</option>
+            <option>スタンダードプラン（A+B）</option>
+            <option>まだ決まっていない・相談したい</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="message">現状の課題・ご相談内容</label>
+          <textarea class="field-textarea" id="message" name="message" placeholder="「GA4は入れているが活用できていない」「どのデータを見れば良いかわからない」など、お気軽にお書きください。"></textarea>
+          <p class="field-hint">未入力でも問題ありません。ヒアリング時にお聞きします。</p>
+        </div>
+
+        <button type="submit" class="btn-submit">申し込みを送信する →</button>
+        <p class="form-note">送信後、2営業日以内にメールにてご連絡いたします。<br>プライバシーポリシーに同意の上、送信してください。</p>
+
+      </form>
+    </div>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="footer-links">
+    <a href="#">プライバシーポリシー</a>
+    <a href="#">特定商取引法に基づく表記</a>
+    <a href="mailto:your@email.com">お問い合わせ</a>
+  </div>
+  <div class="footer-copy">&copy; 2026 All Rights Reserved.</div>
+</footer>
+
+<script>
+const FREE_MAIL_DOMAINS = [
+  'gmail.com','googlemail.com','yahoo.co.jp','yahoo.com','ymail.com',
+  'hotmail.com','hotmail.co.jp','outlook.com','outlook.jp','live.com','live.jp',
+  'icloud.com','me.com','mac.com','docomo.ne.jp','ezweb.ne.jp','softbank.ne.jp',
+  'au.com','i.softbank.jp','excite.co.jp','nifty.com','nifty.ne.jp',
+  'infoseek.jp','livedoor.com','so-net.ne.jp','biglobe.ne.jp','ntt.net',
+  'protonmail.com','proton.me','tutanota.com','zoho.com','aol.com'
+];
+
+function isFreeMailDomain(email) {
+  const domain = email.split('@')[1];
+  if (!domain) return false;
+  return FREE_MAIL_DOMAINS.includes(domain.toLowerCase());
+}
+
+const emailInput = document.getElementById('email');
+const emailError = document.getElementById('email-error');
+const form = document.querySelector('form');
+
+emailInput.addEventListener('blur', () => {
+  if (emailInput.value && isFreeMailDomain(emailInput.value)) {
+    emailInput.style.borderColor = 'var(--cta)';
+    emailInput.style.boxShadow = '0 0 0 3px rgba(216,90,48,0.1)';
+    emailError.style.display = 'block';
+  } else {
+    emailInput.style.borderColor = '';
+    emailInput.style.boxShadow = '';
+    emailError.style.display = 'none';
+  }
+});
+
+emailInput.addEventListener('input', () => {
+  if (emailError.style.display === 'block') {
+    emailInput.style.borderColor = '';
+    emailInput.style.boxShadow = '';
+    emailError.style.display = 'none';
+  }
+});
+
+form.addEventListener('submit', (e) => {
+  if (isFreeMailDomain(emailInput.value)) {
+    e.preventDefault();
+    emailInput.style.borderColor = 'var(--cta)';
+    emailInput.style.boxShadow = '0 0 0 3px rgba(216,90,48,0.1)';
+    emailError.style.display = 'block';
+    emailInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    emailInput.focus();
+  }
+});
+</script>
+</body>
+</html>
